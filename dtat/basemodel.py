@@ -19,11 +19,6 @@ class IdModel(Model):
                 type = sa.ForeignKey(base.id)
                 break
         else:
-            type = sa.BigInteger
+            type = sa.Integer
 
         return sa.Column(type, primary_key=True)
-
-    @classmethod
-    def getById(cls, id):
-        entity = cls.query.filter_by(id=id).first()
-        return entity
