@@ -1,18 +1,18 @@
-from dtat import app
+from dtat.app import db
 
 
-class Player(app.db.Model):
+class Player(db.Model):
     __tablename__ = "player"
-    guild_id = app.db.Column(app.db.Integer, app.db.ForeignKey("guild.id"))
-    counts = app.db.relationship('Count', backref='player', lazy=True)
-    name = app.db.Column(app.db.String(32), nullable=False)
-    rockbiteID = app.db.Column(app.db.String(24))
-    lastOnline = app.db.Column(app.db.DateTime)
-    level = app.db.Column(app.db.Integer)
-    depth = app.db.Column(app.db.Integer)
-    mine = app.db.Column(app.db.Integer)
-    chemMine = app.db.Column(app.db.Integer)
-    oil = app.db.Column(app.db.Integer)
-    crafters = app.db.Column(app.db.Integer)
-    smelters = app.db.Column(app.db.Integer)
-    lastEventDonation = app.db.Column(app.db.Integer)
+    guild_id = db.Column(db.Integer, db.ForeignKey("guild.id"))
+    counts = db.relationship('Count', backref='player', lazy=True)
+    name = db.Column(db.String(32), nullable=False)
+    rockbiteID = db.Column(db.String(24))
+    lastOnline = db.Column(db.DateTime)
+    level = db.Column(db.Integer)
+    depth = db.Column(db.Integer)
+    mine = db.Column(db.Integer)
+    chemMine = db.Column(db.Integer)
+    oil = db.Column(db.Integer)
+    crafters = db.Column(db.Integer)
+    smelters = db.Column(db.Integer)
+    lastEventDonation = db.Column(db.Integer)

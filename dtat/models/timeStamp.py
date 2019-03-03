@@ -1,8 +1,8 @@
-from dtat import app
+from dtat.app import db
 
 
-class TimeStamp(app.db.Model):
+class TimeStamp(db.Model):
     __tablename__ = "timestamp"
-    player_id = app.db.Column(app.db.Integer, app.db.ForeignKey("player.id"))
-    counts = app.db.relationship('Count', backref='timestamp', lazy=True)
-    date = app.db.Column(app.db.DateTime)
+    player_id = db.Column(db.Integer, db.ForeignKey("player.id"))
+    counts = db.relationship('Count', backref='timestamp', lazy=True)
+    date = db.Column(db.DateTime)

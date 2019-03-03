@@ -1,9 +1,9 @@
-from dtat import app
+from dtat.app import db
 
 
-class Count(app.db.Model):
+class Count(db.Model):
     __tablename__ = "count"
-    timestamp_id = app.db.Column(app.db.Integer, app.db.ForeignKey("timestamp.id"))
-    player_id = app.db.Column(app.db.Integer, app.db.ForeignKey("player.id"))
-    donated = app.db.Column(app.db.BigInteger)
-    received = app.db.Column(app.db.BigInteger)
+    timestamp_id = db.Column(db.Integer, db.ForeignKey("timestamp.id"))
+    player_id = db.Column(db.Integer, db.ForeignKey("player.id"))
+    donated = db.Column(db.BigInteger)
+    received = db.Column(db.BigInteger)

@@ -1,10 +1,10 @@
-from dtat import app
+from dtat.app import db
 
 
-class Guild(app.db.Model):
+class Guild(db.Model):
     __tablename__ = "guild"
-    name = app.db.Column(app.db.String(32), nullable=False)
-    timeStamps = app.db.relationship('TimeStamp', backref='guild', lazy=True)
-    rockbiteID = app.db.Column(app.db.String(24))
-    totalLevel = app.db.Column(app.db.Integer)
-    totalDonations = app.db.Column(app.db.BigInteger)
+    name = db.Column(db.String(32), nullable=False)
+    timeStamps = db.relationship('TimeStamp', backref='guild', lazy=True)
+    rockbiteID = db.Column(db.String(24))
+    totalLevel = db.Column(db.Integer)
+    totalDonations = db.Column(db.BigInteger)
