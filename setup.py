@@ -10,6 +10,7 @@ setup(
         'flask',
         'flask-sqlalchemy',
         'flask-migrate',
+        'requests'
     ],
     setup_requires=[
         "pytest-runner",

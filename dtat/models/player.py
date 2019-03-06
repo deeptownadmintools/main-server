@@ -1,18 +1,37 @@
-from dtat.app import db
+from dtat import app
+from sqlalchemy import Column, Integer, BigInteger, ForeignKey, String, DateTime
+from datetime import datetime
 
 
-class Player(db.Model):
+class Player(app.db.Model):
     __tablename__ = "player"
-    guild_id = db.Column(db.Integer, db.ForeignKey("guild.id"))
-    counts = db.relationship('Count', backref='player', lazy=True)
-    name = db.Column(db.String(32), nullable=False)
-    rockbiteID = db.Column(db.String(24))
-    lastOnline = db.Column(db.DateTime)
-    level = db.Column(db.Integer)
-    depth = db.Column(db.Integer)
-    mine = db.Column(db.Integer)
-    chemMine = db.Column(db.Integer)
-    oil = db.Column(db.Integer)
-    crafters = db.Column(db.Integer)
-    smelters = db.Column(db.Integer)
-    lastEventDonation = db.Column(db.Integer)
+    guild_id = Column(Integer, ForeignKey("guild.id"))
+    counts = app.db.relationship('Count', backref='player', lazy=True)
+    name = Column(String(32), nullable=False)
+    rockbiteId = Column(String(24), nullable=False, unique=True)
+    lastOnline = Column(DateTime)
+    level = Column(Integer)
+    depth = Column(Integer)
+    mine = Column(Integer)
+    chemMine = Column(Integer)
+    oil = Column(Integer)
+    crafters = Column(Integer)
+    smelters = Column(Integer)
+    lastEventDonation = Column(Integer)
+
+    def __init__(self, guild_id, name, rockbiteId, lastOnline, level, depth,
+                 mine, chemMine, oil, crafters, smelters, lastEventDonation):
+        self.guild_id = guild_id
+        self.name = name
+        self.rockbiteId = rockbiteId
+        self.lastOnline = datetime.strptime(
+            lastOnline,
+            "%Y-%m-%dT%H:%M:%S.%fZ")
+        self.level = level
+        self.depth = depth
+        self.mine = mine
+        self.chemMine = chemMine
+        self.oil = oil
+        self.crafters = crafters
+        self.smelters = smelters
+        self.lastEventDonation = lastEventDonation

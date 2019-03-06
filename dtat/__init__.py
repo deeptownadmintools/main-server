@@ -9,6 +9,7 @@ import os
 class DTAT(Flask):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.db = None
 
     @staticmethod
     def create_app():
@@ -18,10 +19,10 @@ class DTAT(Flask):
         app = DTAT(__name__)
 
         app.config.from_object("dtat.defaultConfig")
-        # try:
-        #     app.config.from_object("dtat.privateConfig")
-        # except ImportError:
-        #     pass
+        try:
+            app.config.from_object("dtat.privateConfig")
+        except ImportError:
+            pass
 
         app.db = SQLAlchemy(app, model_class=IdModel,
                             metadata=MetaData(
@@ -39,7 +40,7 @@ class DTAT(Flask):
     def migrate_db(self):
         with self.app_context():
             path = os.path.dirname(os.path.abspath(__file__))
-            upgrade(path + '/../migrations')
+            # upgrade(path + '/../migrations')
 
 
 app = DTAT.create_app()

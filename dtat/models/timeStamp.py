@@ -1,8 +1,9 @@
-from dtat.app import db
+from dtat import app
+from sqlalchemy import Column, Integer, BigInteger, ForeignKey, DateTime
 
 
-class TimeStamp(db.Model):
+class TimeStamp(app.db.Model):
     __tablename__ = "timestamp"
-    player_id = db.Column(db.Integer, db.ForeignKey("player.id"))
-    counts = db.relationship('Count', backref='timestamp', lazy=True)
-    date = db.Column(db.DateTime)
+    guild_id = Column(Integer, ForeignKey("guild.id"))
+    counts = app.db.relationship('Count', backref='timestamp', lazy=True)
+    date = Column(DateTime)
