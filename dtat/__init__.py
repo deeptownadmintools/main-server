@@ -40,14 +40,14 @@ class DTAT(Flask):
     def migrate_db(self):
         with self.app_context():
             path = os.path.dirname(os.path.abspath(__file__))
-            # upgrade(path + '/../migrations')
+            upgrade(path + '/../migrations')
 
 
 app = DTAT.create_app()
 app.registerBlueprints()
 app.migrate_db()
 
-import dtat.models # noqa F402
+import dtat.models  # noqa F402
 
 __all__ = [
     'app'

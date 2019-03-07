@@ -8,3 +8,9 @@ class Count(app.db.Model):
     player_id = Column(Integer, ForeignKey("player.id"))
     donated = Column(BigInteger)
     received = Column(BigInteger)
+
+    def __init__(self, timestamp_id, player_id, donated, received):
+        self.timestamp_id = timestamp_id
+        self.player_id = player_id
+        self.donated = donated
+        self.received = received

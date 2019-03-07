@@ -8,10 +8,10 @@ def guildByName(name):
     r = loads(requests.get(
         app.config['ROCKBITE_URL']+"find",
         headers={'access_key': app.config['ROCKBITE_TOKEN']},
-        params={'guild_name':name},
+        params={'guild_name': name},
     ).text)
 
     if r['status'] != "ok":
-        raise RockbiteException(404,"Api response was not ok.", ["status"])
-    
+        raise RockbiteException(404, "Api response was not ok.", ["status"])
+
     return r

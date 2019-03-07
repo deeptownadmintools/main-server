@@ -1,5 +1,5 @@
 from dtat import app
-from sqlalchemy import Column, Integer, BigInteger, ForeignKey, String, DateTime
+from sqlalchemy import Column, Integer, ForeignKey, String, DateTime
 from datetime import datetime
 
 

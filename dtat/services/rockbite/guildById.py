@@ -11,7 +11,6 @@ def guildById(id):
     ).text)
 
     if r['status'] != "ok":
-        raise RockbiteException(404,"Api response was not ok.", ["status"])
-    
-    return r
+        raise RockbiteException(404, "Api response was not ok.", ["status"])
 
+    return r

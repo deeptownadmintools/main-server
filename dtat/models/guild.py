@@ -1,5 +1,5 @@
 from dtat import app
-from sqlalchemy import Column, Integer, BigInteger, String, LargeBinary
+from sqlalchemy import Column, Integer, String
 
 
 class Guild(app.db.Model):
@@ -12,7 +12,7 @@ class Guild(app.db.Model):
     # totalDonations = Column(BigInteger)
     level = Column(Integer)
 
-    def __init__(self,name,rockbiteID,level):
+    def __init__(self, name, rockbiteID, level):
         self.name = name
         self.rockbiteID = rockbiteID
         self.level = level
