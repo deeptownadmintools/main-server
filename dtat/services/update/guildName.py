@@ -4,10 +4,15 @@ from dtat import app
 
 
 def guildName(guildName):
+    """
+    Updates list of guilds
+        :param guildName: (partial) guild name
+        :returns: list of added guild's ids
+    """
     data = guildByName(guildName)['result']
     ids = []
     for a in data:
-        guild = Guild.query.filter_by(rockbiteID=a['guild_id']).first()
+        guild = Guild.query.filter_by(rockbiteId=a['guild_id']).first()
         if guild is None:
             guild = Guild(a['guild_name'], a['guild_id'], a['level'])
             app.db.session.add(guild)

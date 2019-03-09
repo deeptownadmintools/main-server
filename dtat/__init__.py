@@ -34,13 +34,14 @@ class DTAT(Flask):
         return app
 
     def registerBlueprints(self):
-        from dtat.api import homeprint
+        from dtat.api import homeprint, update
         self.register_blueprint(homeprint)
+        self.register_blueprint(update)
 
     def migrate_db(self):
         with self.app_context():
             path = os.path.dirname(os.path.abspath(__file__))
-            upgrade(path + '/../migrations')
+            # upgrade(path + '/../migrations')
 
 
 app = DTAT.create_app()
