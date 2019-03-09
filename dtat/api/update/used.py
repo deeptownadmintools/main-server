@@ -1,4 +1,4 @@
-from dtat.api.update import update
+from dtat.api.update import updateprint
 from dtat.services.update import updateUsed
 
 

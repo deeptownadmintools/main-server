@@ -2,7 +2,7 @@ from flask import Blueprint
 from dtat.exceptions import DTATException
 from flask import jsonify
 
-update = Blueprint('update', __name__, url_prefix='/update')
+updateprint = Blueprint('update', __name__, url_prefix='/update')
 
 
 from dtat.api.update.id import id  # noqa F402
@@ -20,7 +20,7 @@ def __response_err(data):
 
 
 __all__ = [
-    'update',
+    'updateprint',
     'id',
     'name',
     'all',

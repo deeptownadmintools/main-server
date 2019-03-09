@@ -33,9 +33,9 @@ class DTAT(Flask):
         return app
 
     def registerBlueprints(self):
-        from dtat.api import homeprint, update
+        from dtat.api import homeprint, updateprint
         self.register_blueprint(homeprint)
-        self.register_blueprint(update)
+        self.register_blueprint(updateprint)
 
 
 app = DTAT.create_app()
