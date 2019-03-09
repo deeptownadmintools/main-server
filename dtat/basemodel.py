@@ -20,6 +20,8 @@ naming_convention = {
 source:
     http://flask-sqlalchemy.pocoo.org/2.3/customizing/
 """
+
+
 class IdModel(Model):
     @declared_attr
     def id(self):

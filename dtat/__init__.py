@@ -1,9 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate, upgrade
+from flask_migrate import Migrate
 from sqlalchemy import MetaData
 from dtat.basemodel import IdModel, naming_convention
-import os
 
 
 class DTAT(Flask):
@@ -38,15 +37,9 @@ class DTAT(Flask):
         self.register_blueprint(homeprint)
         self.register_blueprint(update)
 
-    def migrate_db(self):
-        with self.app_context():
-            path = os.path.dirname(os.path.abspath(__file__))
-            # upgrade(path + '/../migrations')
-
 
 app = DTAT.create_app()
 app.registerBlueprints()
-app.migrate_db()
 
 import dtat.models  # noqa F402
 

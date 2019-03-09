@@ -7,7 +7,7 @@ from datetime import datetime
 def guildObj(guild):
     """
     Updates guild data in database
-        :param guild: model object containing id and rockbite object id 
+        :param guild: model object containing id and rockbite object id
     """
     playerIds = []
 
@@ -47,7 +47,8 @@ def guildObj(guild):
             a['received_donation'] = 0
 
         if player is None:
-            player = Player(guild.id, a['user_name'], a['user_id'], a['last_online'],
+            player = Player(guild.id, a['user_name'],
+                            a['user_id'], a['last_online'],
                             a['level'], a['depth'], a['miners_count'],
                             a['chemistry_mining_station_count'],
                             a['oil_building_count'], a['crafters_count'],

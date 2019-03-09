@@ -1,5 +1,4 @@
 from dtat.models import Guild
-from datetime import datetime, timedelta
 from dtat.services.update import guildObj
 
 

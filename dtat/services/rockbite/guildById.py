@@ -14,7 +14,6 @@ def guildById(id):
         headers={'access_key': app.config['ROCKBITE_TOKEN']},
     ).json()
 
-
     if r['status'] != "ok":
         raise RockbiteException(404, "Api response was not ok.", ["status"])
 
