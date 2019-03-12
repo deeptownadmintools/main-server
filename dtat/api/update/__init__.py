@@ -11,7 +11,7 @@ from dtat.api.update.all import all  # noqa F402
 from dtat.api.update.used import used  # noqa F402
 
 
-@update.errorhandler(DTATException)
+@updateprint.errorhandler(DTATException)
 def __response_err(data):
     return jsonify({
         "message": data.message,
@@ -25,5 +25,4 @@ __all__ = [
     'name',
     'all',
     'used',
-    '__response_err',
 ]

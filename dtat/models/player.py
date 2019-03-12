@@ -37,3 +37,34 @@ class Player(app.db.Model):
             self.crafters = crafters
             self.smelters = smelters
             self.lastEventDonation = lastEventDonation
+
+    @staticmethod
+    def keys():
+        return [
+            'id',
+            'name',
+            'lastOnline',
+            'level',
+            'depth',
+            'mine',
+            'chemMine',
+            'oil',
+            'crafters',
+            'smelters',
+            'lastEventDonation',
+        ]
+
+    def list(self):
+        return [
+            self.id,
+            self.name,
+            self.lastOnline,
+            self.level,
+            self.depth,
+            self.mine,
+            self.chemMine,
+            self.oil,
+            self.crafters,
+            self.smelters,
+            self.lastEventDonation,
+        ]

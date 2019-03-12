@@ -14,3 +14,16 @@ class TimeStamp(app.db.Model):
         self.date = datetime.strptime(
             date,
             "%Y-%m-%dT%H:%M:%S.%fZ")
+
+    @staticmethod
+    def keys():
+        return [
+            'id',
+            'date',
+        ]
+
+    def list(self):
+        return [
+            self.id,
+            self.date,
+        ]

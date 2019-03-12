@@ -1,5 +1,4 @@
-from flask import Blueprint
-from dtat.services.update import guildId
+from flask import Blueprint, jsonify
 
 
 homeprint = Blueprint("home", __name__)
@@ -15,5 +14,21 @@ def test():
     """
     Api method soleley for testing purposes
     """
-    guildId(11, "591baa171dc27b0c828e524e")
-    return "ok"
+    data = []
+    for a in range(10000):
+        data.append(
+            [
+                123456789,
+                '1234567890123456789012345678901234567890',
+                123,
+            ]
+        )
+
+    return jsonify({
+        'keys': [
+            'id',
+            'name',
+            'level',
+        ],
+        'data': data
+    })

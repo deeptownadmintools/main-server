@@ -7,7 +7,7 @@ def updateUsed():
     """
     Updates every used guild's data in database
     """
-    guilds = Guild.query.filter(Guild.lastVisited >=
-                                datetime.utcnow() - timedelta(month=1)).all()
+    guilds = Guild.query.filter(
+        Guild.lastVisited >= datetime.utcnow() - timedelta(month=1)).all()
     for a in guilds:
         guildObj(a)

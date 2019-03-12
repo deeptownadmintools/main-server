@@ -4,10 +4,16 @@ from dtat import app
 from datetime import datetime
 
 
-def guildObj(guild):
+def guildObj(guild, respond=False):
     """
     Updates guild data in database
         :param guild: model object containing id and rockbite object id
+        :param respond: nothing will be returned if False
+        :returns: {
+            'players': [...],
+            'guild': obj,
+            'timeStamp': obj
+        }
     """
     playerIds = []
 
@@ -26,25 +32,24 @@ def guildObj(guild):
     for a in data['members']:
         player = Player.query.filter_by(rockbiteId=a['user_id']).first()
 
-        # print(a)
-        if 'last_online' not in a or int(a['last_online'][:4]) < 2019:
-            if player is None:
-                player = Player(guild.id, a['user_name'], a['user_id'])
-                app.db.session.add(player)
-            count = Count(timeStamp.id, player.id, a['donations'], 0)
-            app.db.session.add(count)
-            app.db.session.commit()
-            playerIds.append(player.id)
-            continue
-
-        if 'oil_building_count' not in a:
-            a['oil_building_count'] = 0
+        if 'last_online' not in a:
+            a['last_online'] = "2018-1-1T00:00:00.00Z"
+        if 'level' not in a:
+            a['level'] = 0
+        if 'depth' not in a:
+            a['depth'] = 0
+        if 'miners_count' not in a:
+            a['miners_count'] = 0
         if 'chemistry_mining_station_count' not in a:
             a['chemistry_mining_station_count'] = 0
+        if 'oil_building_count' not in a:
+            a['oil_building_count'] = 0
+        if 'crafters_count' not in a:
+            a['crafters_count'] = 0
+        if 'smelters_count' not in a:
+            a['smelters_count'] = 0
         if 'last_event_donation' not in a:
             a['last_event_donation'] = 0
-        if 'received_donation' not in a:
-            a['received_donation'] = 0
 
         if player is None:
             player = Player(guild.id, a['user_name'],
@@ -70,10 +75,21 @@ def guildObj(guild):
             player.smelters = a['smelters_count']
             player.lastEventDonation = a['last_event_donation']
 
-        count = Count(timeStamp.id, player.id, a['donations'],
-                      a['received_donation'])
-        app.db.session.add(count)
+        timeStamp.counts.append(Count(timeStamp.id, player.id, a['donations'],
+                                      a['received_donation']))
         playerIds.append(player.id)
 
     app.db.session.commit()
-    return playerIds
+
+    players = Player.query.filter_by(guild_id=guild.id).all()
+    if len(players) != len(playerIds):
+        for a in players:
+            if a.id not in playerIds:
+                a.guild_id = None
+        app.db.session.commit()
+    if respond:
+        return {
+            'players': players,
+            'guild': guild,
+            'timeStamp': timeStamp
+        }
