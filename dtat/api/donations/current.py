@@ -6,5 +6,5 @@ from flask import jsonify
 
 @donationprint.route('/current/guild/id/<int:id>', methods=['GET'])
 def current(id):
-    data = guildId(id, True)
+    data = guildId(id, True, True)
     return jsonify(playerDonationMatch(data['timeStamp']))

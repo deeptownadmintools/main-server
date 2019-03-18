@@ -1,8 +1,9 @@
 from dtat.api.update import updateprint
 from dtat.services.update import updateAll
+from flask import jsonify
 
 
 @updateprint.route('/all', methods=['GET'])
 def all():
     updateAll()
-    return 'ok'
+    return jsonify({'result': 'ok'})

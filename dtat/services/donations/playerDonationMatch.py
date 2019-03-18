@@ -3,10 +3,11 @@ def playerDonationMatch(timestamp):
     for count in timestamp.counts:
         list.append([
             count.player.name,
-            count.donated,
-            count.received,
+            int(count.donated),
+            int(count.received),
         ])
     return {
+        'date': timestamp.date,
         'keys': [
             'name',
             'donated',

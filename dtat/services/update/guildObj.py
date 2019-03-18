@@ -4,7 +4,7 @@ from dtat import app
 from datetime import datetime
 
 
-def guildObj(guild, respond=False):
+def guildObj(guild, respond=False, update=False):
     """
     Updates guild data in database
         :param guild: model object containing id and rockbite object id
@@ -15,6 +15,9 @@ def guildObj(guild, respond=False):
             'timeStamp': obj
         }
     """
+    if update:
+        guild.lastVisited = datetime.utcnow()
+
     playerIds = []
 
     data = guildById(guild.rockbiteId)
@@ -50,6 +53,8 @@ def guildObj(guild, respond=False):
             a['smelters_count'] = 0
         if 'last_event_donation' not in a:
             a['last_event_donation'] = 0
+        if 'received_donation' not in a:
+            a['received_donation'] = 0
 
         if player is None:
             player = Player(guild.id, a['user_name'],
