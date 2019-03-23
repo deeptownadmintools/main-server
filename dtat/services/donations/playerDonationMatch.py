@@ -7,7 +7,8 @@ def playerDonationMatch(timestamp):
             int(count.received),
         ])
     return {
-        'date': timestamp.date,
+        'from': 'Dawn of time',
+        'to': timestamp.date,
         'keys': [
             'name',
             'donated',

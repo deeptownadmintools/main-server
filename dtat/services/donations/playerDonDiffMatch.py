@@ -1,12 +1,5 @@
 def playerDonDiffMatch(timestamp1, timestamp2):
     list = []
-    print('---')
-    for a in timestamp1.counts:
-        print(a.donated)
-    print('---')
-    for a in timestamp2.counts:
-        print(a.donated)
-    print('---')
     if (timestamp1.id < timestamp2.id):
         tmp = timestamp1
         timestamp1 = timestamp2
@@ -18,8 +11,8 @@ def playerDonDiffMatch(timestamp1, timestamp2):
                 matched = True
                 list.append([
                     countA.player.name,
-                    countA.donated - countB.donated,
-                    countA.received - countB.received,
+                    int(countA.donated - countB.donated),
+                    int(countA.received - countB.received),
                 ])
                 break
 
@@ -29,13 +22,7 @@ def playerDonDiffMatch(timestamp1, timestamp2):
                 '/',
                 '/',
             ])
-    print('---')
-    for a in timestamp1.counts:
-        print(a.donated)
-    print('---')
-    for a in timestamp2.counts:
-        print(a.donated)
-    print('---')
+
     return {
         'from': timestamp1.date,
         'to': timestamp2.date,
