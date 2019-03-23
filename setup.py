@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name='DTAT - main server',
+    name='DTAT_main_server',
     version='0.2.0',
     packages=find_packages(),
     include_package_data=True,
