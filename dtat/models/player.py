@@ -17,11 +17,15 @@ class Player(app.db.Model):
     oil = Column(Integer, default=0)
     crafters = Column(Integer, default=0)
     smelters = Column(Integer, default=0)
+    jewel = Column(Integer, default=0)
+    chemStation = Column(Integer, default=0)
+    greenHouse = Column(Integer, default=0)
     lastEventDonation = Column(Integer, default=0)
 
     def __init__(self, guild_id, name, rockbiteId, lastOnline=None,
                  level=None, depth=None, mine=None, chemMine=None, oil=None,
-                 crafters=None, smelters=None, lastEventDonation=None):
+                 crafters=None, smelters=None, jewel=None, chemStation=None,
+                 greenHouse=None, lastEventDonation=None):
         self.guild_id = guild_id
         self.name = name
         self.rockbiteId = rockbiteId
@@ -36,6 +40,9 @@ class Player(app.db.Model):
             self.oil = oil
             self.crafters = crafters
             self.smelters = smelters
+            self.jewel = jewel
+            self.chemStation = chemStation
+            self.greenHouse = greenHouse
             self.lastEventDonation = lastEventDonation
 
     @staticmethod
@@ -51,6 +58,9 @@ class Player(app.db.Model):
             'oil',
             'crafters',
             'smelters',
+            'jewel',
+            'chemStation',
+            'greenHouse',
             'lastEventDonation',
         ]
 
@@ -66,5 +76,8 @@ class Player(app.db.Model):
             self.oil,
             self.crafters,
             self.smelters,
+            self.jewel,
+            self.chemStation,
+            self.greenHouse,
             self.lastEventDonation,
         ]

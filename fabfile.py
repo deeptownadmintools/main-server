@@ -26,4 +26,4 @@ def deploy():
     run('rm -r /home/dtat/tmp/%s' % filename)
 
     #restart supervisor's subprocess
-    sudo('sudo supervisorctl restart dtat-web-server')
+    sudo('sudo supervisorctl restart dtat-main-server')

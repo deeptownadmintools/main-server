@@ -51,6 +51,12 @@ def guildObj(guild, respond=False, update=False):
             a['crafters_count'] = 0
         if 'smelters_count' not in a:
             a['smelters_count'] = 0
+        if 'jewellery_building_slot_count' not in a:
+            a['jewellery_building_slot_count'] = 0
+        if 'chemistry_building_slot_count' not in a:
+            a['chemistry_building_slot_count'] = 0
+        if 'green_house_building_slot_count' not in a:
+            a['green_house_building_slot_count'] = 0
         if 'last_event_donation' not in a:
             a['last_event_donation'] = 0
         if 'received_donation' not in a:
@@ -62,7 +68,11 @@ def guildObj(guild, respond=False, update=False):
                             a['level'], a['depth'], a['miners_count'],
                             a['chemistry_mining_station_count'],
                             a['oil_building_count'], a['crafters_count'],
-                            a['smelters_count'], a['last_event_donation'])
+                            a['smelters_count'],
+                            a['jewellery_building_slot_count'],
+                            a['chemistry_building_slot_count'],
+                            a['green_house_building_slot_count'],
+                            a['last_event_donation'])
             app.db.session.add(player)
             app.db.session.commit()
         else:
@@ -78,6 +88,9 @@ def guildObj(guild, respond=False, update=False):
             player.oil = a['oil_building_count']
             player.crafters = a['crafters_count']
             player.smelters = a['smelters_count']
+            player.jewel = a['jewellery_building_slot_count']
+            player.chemStation = a['chemistry_building_slot_count']
+            player.greenHouse = a['green_house_building_slot_count']
             player.lastEventDonation = a['last_event_donation']
 
         timeStamp.counts.append(Count(timeStamp.id, player.id, a['donations'],
