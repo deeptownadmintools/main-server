@@ -7,8 +7,9 @@ from datetime import datetime
 def guildObj(guild, respond=False, update=False):
     """
     Updates guild data in database
-        :param guild: model object containing id and rockbite object id
+        :param guild: instance of Guild containing id and rockbite object id
         :param respond: nothing will be returned if False
+        :param update: if True guild will be marked for periodical updates
         :returns: {
             'players': [...],
             'guild': obj,

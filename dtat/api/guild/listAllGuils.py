@@ -8,6 +8,9 @@ from dtat.models import Guild
 @guildprint.route('/name/', methods=['GET'])
 @guildprint.route('/name', methods=['GET'])
 def listAllGuils():
+    """
+    Returns list of all guilds.
+    """
     guilds = listGuilds()
     data = []
     for a in guilds:

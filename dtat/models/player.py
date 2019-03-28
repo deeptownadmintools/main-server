@@ -4,6 +4,9 @@ from datetime import datetime
 
 
 class Player(app.db.Model):
+    """
+    Database model representing players. 
+    """
     __tablename__ = "player"
     guild_id = Column(Integer, ForeignKey("guild.id"))
     counts = app.db.relationship('Count', backref='player', lazy=True)

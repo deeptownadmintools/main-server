@@ -1,4 +1,18 @@
 def playerDonationMatch(timestamp):
+    """
+    Matches player name and donations and returns them formated.
+        :param timestamp: TimeStamp object 
+        :returns: {
+            'from': 'Dawn of time',
+            'to': 'date',
+            'keys': [
+                'name',
+                'donated',
+                'received',
+            ],
+            'data': [...]
+        }
+    """
     list = []
     for count in timestamp.counts:
         list.append([

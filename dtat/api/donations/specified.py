@@ -9,6 +9,10 @@ from datetime import datetime
 
 @donationprint.route('/specified/time/id/<int:id>', methods=['GET'])
 def specified(id):
+    """
+    Returns donations from dawn of time up until a given time.
+        :param id: timestamp_id
+    """
     data = TimeStamp.query.get(id)
     if data is None:
         raise DbException(404, 'Timestamp was not found.', ['id'])

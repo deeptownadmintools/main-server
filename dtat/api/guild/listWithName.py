@@ -7,6 +7,10 @@ from dtat.services.update import guildName
 
 @guildprint.route('/name/<string:name>', methods=['GET'])
 def listWithName(name):
+    """
+    Returns list of guilds matching given name.
+        :param name: start of a guild (non case sensitive)
+    """
     guilds = listGuildsWithName(name)
     if len(guilds) == 0:
         guildName(name)

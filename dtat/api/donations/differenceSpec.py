@@ -10,6 +10,11 @@ from datetime import datetime
 @donationprint.route('/difference/time/id/<int:id1>/time/id/<int:id2>',
                      methods=['GET'])
 def differenceSpec(id1, id2):
+    """
+    Returns donations between two timestamps.
+        :param id1: timestamp_id - from
+        :param id2: timestamp_id - to
+    """
     timeStamp1 = TimeStamp.query.get(id1)
     timeStamp2 = TimeStamp.query.get(id2)
     if timeStamp1 is None or timeStamp2 is None:

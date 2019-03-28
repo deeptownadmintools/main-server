@@ -9,6 +9,11 @@ from flask import jsonify
 @donationprint.route('/difference/guild/id/<int:id1>/time/id/<int:id2>',
                      methods=['GET'])
 def differenceNow(id1, id2):
+    """
+    Returns donations from given time up until now.
+        :param id1: guild_id
+        :param id2: timestamp_id
+    """
     timeStamp2 = TimeStamp.query.get(id2)
 
     if timeStamp2 is None:

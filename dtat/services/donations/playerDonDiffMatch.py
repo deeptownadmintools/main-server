@@ -1,4 +1,21 @@
 def playerDonDiffMatch(timestamp1, timestamp2):
+    """
+    Counts difference in donations between two times, then it matches said
+    difference with player names. In case TimeStamp objects are input in a
+    wrong order they will be reordered appropriately. 
+    :param timestamp1: instance of TimeStamp object - from
+    :param timestamp2: instance of TimeStamp object - to
+    :returns: {
+        'from': datetime,
+        'to': datetime,
+        'keys': [
+            'name',
+            'donated',
+            'received',
+        ],
+        'data': [...]
+    }
+    """
     list = []
     if (timestamp1.id < timestamp2.id):
         tmp = timestamp1

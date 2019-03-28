@@ -4,6 +4,9 @@ from datetime import datetime
 
 
 class TimeStamp(app.db.Model):
+    """
+    Database model for each donation time.
+    """
     __tablename__ = "timestamp"
     guild_id = Column(Integer, ForeignKey("guild.id"))
     counts = app.db.relationship('Count', backref='timestamp', lazy=True)

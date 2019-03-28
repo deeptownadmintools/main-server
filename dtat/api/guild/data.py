@@ -9,6 +9,10 @@ from dtat.exceptions import DTATException
 
 @guildprint.route('/id/<int:id>/data', methods=['GET'])
 def data(id):
+    """
+    Returns guild data.
+        :param id: guild_id
+    """
     guild = guildWithId(id)
     if len(guild.players) == 0:
         guild = guildObj(guild, True, True)['guild']

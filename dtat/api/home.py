@@ -6,13 +6,16 @@ homeprint = Blueprint("home", __name__)
 
 @homeprint.route('/')
 def home():
+    """
+    Api method for testing purposes.
+    """
     return "DeepTownAdminTools - main server"
 
 
 @homeprint.route('/test')
 def test():
     """
-    Api method soleley for testing purposes
+    Api method for testing purposes.
     """
     data = []
     for a in range(10000):
