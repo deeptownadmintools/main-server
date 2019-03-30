@@ -1,7 +1,7 @@
 from dtat.services.rockbite import guildById
 from dtat.models import Player, Count, TimeStamp
 from dtat import app
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def guildObj(guild, respond=False, update=False):
@@ -16,6 +16,18 @@ def guildObj(guild, respond=False, update=False):
             'timeStamp': obj
         }
     """
+    lastTimeStamp = TimeStamp.query.filter_by(
+        guild_id=guild.id).order_by(TimeStamp.id.desc()).first()
+
+    if (lastTimeStamp != None and lastTimeStamp.date < datetime.utcnow() - timedelta(minutes=10)):
+        if not respond:
+            return
+        return {
+            'players': guild.players,
+            'guild': guild,
+            'timeStamp': lastTimeStamp
+        }
+
     if update:
         guild.lastVisited = datetime.utcnow()
 
