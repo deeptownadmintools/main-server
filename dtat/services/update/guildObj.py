@@ -19,7 +19,7 @@ def guildObj(guild, respond=False, update=False):
     lastTimeStamp = TimeStamp.query.filter_by(
         guild_id=guild.id).order_by(TimeStamp.id.desc()).first()
 
-    if (lastTimeStamp != None and lastTimeStamp.date < datetime.utcnow() - timedelta(minutes=10)):
+    if (lastTimeStamp != None and lastTimeStamp.date > datetime.utcnow() - timedelta(minutes=10)):
         if not respond:
             return
         return {
