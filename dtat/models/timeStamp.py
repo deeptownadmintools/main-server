@@ -1,6 +1,5 @@
 from dtat import app
 from sqlalchemy import Column, Integer, ForeignKey, DateTime
-from datetime import datetime
 
 
 class TimeStamp(app.db.Model):
@@ -14,9 +13,7 @@ class TimeStamp(app.db.Model):
 
     def __init__(self, guild_id, date):
         self.guild_id = guild_id
-        self.date = datetime.strptime(
-            date,
-            "%Y-%m-%dT%H:%M:%S.%fZ")
+        self.date = date
 
     @staticmethod
     def keys():

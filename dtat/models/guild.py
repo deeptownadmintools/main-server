@@ -4,7 +4,7 @@ from sqlalchemy import Column, Integer, String, DateTime
 
 class Guild(app.db.Model):
     """
-    Database model representing guilds. 
+    Database model representing guilds.
     """
     __tablename__ = "guild"
     name = Column(String(32), nullable=False)

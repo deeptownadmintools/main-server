@@ -19,7 +19,10 @@ def guildObj(guild, respond=False, update=False):
     lastTimeStamp = TimeStamp.query.filter_by(
         guild_id=guild.id).order_by(TimeStamp.id.desc()).first()
 
-    if (lastTimeStamp != None and lastTimeStamp.date > datetime.utcnow() - timedelta(minutes=10)):
+    now = datetime.utcnow()
+
+    if (lastTimeStamp is not None and lastTimeStamp.date >
+            now - timedelta(minutes=10)):
         if not respond:
             return
         return {
@@ -35,7 +38,7 @@ def guildObj(guild, respond=False, update=False):
 
     data = guildById(guild.rockbiteId)
 
-    timeStamp = TimeStamp(guild.id, data['server_time'])
+    timeStamp = TimeStamp(guild.id, now)
     app.db.session.add(timeStamp)
 
     data = data['result']

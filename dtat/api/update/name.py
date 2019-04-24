@@ -3,7 +3,7 @@ from dtat.services.update import guildName
 from flask import jsonify
 
 
-@updateprint.route('/name/<string:name>', methods=['GET'])
+@updateprint.route('/name/<string:name>', methods=['GET', 'PATCH'])
 def name(name):
     """
     Updates database using Rockbite's api.

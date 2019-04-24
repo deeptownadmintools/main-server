@@ -3,7 +3,7 @@ from dtat.services.update import updateUsed
 from flask import jsonify
 
 
-@updateprint.route('/used', methods=['GET'])
+@updateprint.route('/used', methods=['GET', 'PATCH'])
 def used():
     """
     Updates all used guilds.
