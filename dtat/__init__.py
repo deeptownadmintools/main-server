@@ -44,6 +44,7 @@ app = DTAT.create_app()
 app.registerBlueprints()
 
 import dtat.models  # noqa F402
+import dtat.cmd  # noqa F402
 
 __all__ = [
     'app'
