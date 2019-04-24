@@ -3,7 +3,7 @@ from dtat.exceptions import DTATException
 from flask import jsonify
 
 
-guildprint = Blueprint('guild', __name__, url_prefix='/guild')
+guildprint = Blueprint('guild', __name__, url_prefix='/data/guild')
 
 
 from dtat.api.guild.listAllGuils import listAllGuils  # noqa F402

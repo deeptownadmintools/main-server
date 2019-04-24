@@ -11,15 +11,16 @@ class DTAT(Flask):
         self.db = None
 
     @staticmethod
-    def create_app():
+    def create_app(configObject="dtat.defaultConfig"):
         """
         Application factory
         """
         app = DTAT(__name__)
 
-        app.config.from_object("dtat.defaultConfig")
+        app.config.from_object(configObject)
         try:
-            app.config.from_object("dtat.privateConfig")
+            if configObject=="dtat.defaultConfig":
+                app.config.from_object("dtat.privateConfig")
         except ImportError:
             pass
 

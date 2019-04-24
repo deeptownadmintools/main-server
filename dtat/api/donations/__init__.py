@@ -3,7 +3,7 @@ from dtat.exceptions import DTATException
 from flask import jsonify
 
 
-donationprint = Blueprint('donations', __name__, url_prefix='/donations')
+donationprint = Blueprint('donations', __name__, url_prefix='/data/donations')
 
 
 from dtat.api.donations.current import current  # noqa F402

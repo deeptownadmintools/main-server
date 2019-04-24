@@ -21,5 +21,7 @@ setup(
         'flask',
         'flask-sqlalchemy',
         'flask-migrate',
+        'pytest-flask',
+        'pytest-mock',
     ],
 )
