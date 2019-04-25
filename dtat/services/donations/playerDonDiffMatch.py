@@ -17,7 +17,7 @@ def playerDonDiffMatch(timestamp1, timestamp2):
     }
     """
     list = []
-    if (timestamp1.id < timestamp2.id):
+    if (timestamp1.date > timestamp2.date):
         tmp = timestamp1
         timestamp1 = timestamp2
         timestamp2 = tmp
@@ -28,8 +28,8 @@ def playerDonDiffMatch(timestamp1, timestamp2):
                 matched = True
                 list.append([
                     countA.player.name,
-                    int(countA.donated - countB.donated),
-                    int(countA.received - countB.received),
+                    int(countB.donated - countA.donated),
+                    int(countB.received - countA.received),
                 ])
                 break
 
