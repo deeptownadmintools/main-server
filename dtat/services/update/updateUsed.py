@@ -2,7 +2,7 @@ from dtat.models import Guild
 from datetime import datetime, timedelta
 from dtat.services.update import guildObj
 
-
+import time
 def updateUsed():
     """
     Updates every used guild's data in database
