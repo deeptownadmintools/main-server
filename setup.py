@@ -23,5 +23,6 @@ setup(
         'flask-migrate',
         'pytest-flask',
         'pytest-mock',
+        'mock',
     ],
 )

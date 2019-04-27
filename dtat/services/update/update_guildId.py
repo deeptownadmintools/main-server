@@ -1,4 +1,4 @@
-from dtat.services.update.guildObj import guildObj
+from dtat.services.update.update_guildObj import guildObj
 from dtat.models import Guild
 from dtat.exceptions import DbException
 

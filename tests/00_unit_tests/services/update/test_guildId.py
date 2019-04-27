@@ -5,7 +5,7 @@ import pytest
 # sys.modules['dtat.services.update.guildObj'] = mock.MagicMock()
 # sys.modules['guildObj'] = mock.MagicMock()
 # from dtat.services.update.guildObj import guildObj
-from dtat.services.update.guildId import guildId
+from dtat.services.update.update_guildId import guildId
 from dtat.exceptions.dbException import DbException
 
 
@@ -21,17 +21,17 @@ class MockGuild():
         self.query = MockQuery()
 
 
-# @mock.patch('dtat.models.Guild.query')
-# @mock.patch('dtat.services.update.guildObj', spec=guildObj)
-# def test_guildId_nok(mGObj, mQ):
-#     mQ.get.return_value = None
-#     with pytest.raises(DbException):
-#         guildId(1)
-#         assert False
+@mock.patch('dtat.models.Guild.query')
+@mock.patch('dtat.services.update.update_guildId.guildObj')
+def test_guildId_nok(mGObj, mQ):
+    mQ.get.return_value = None
+    with pytest.raises(DbException):
+        guildId(1)
+        assert False
 
 
 @mock.patch('dtat.models.Guild.query')
-@mock.patch('dtat.services.update.guildObj')
+@mock.patch('dtat.services.update.update_guildId.guildObj', return_value='ok')
 def test_guildId_ok(mGObj, mQ):
     mQ.get.return_value = 'ok'
     assert guildId(1) == 'ok'

@@ -1,5 +1,5 @@
 from dtat.models import Guild
-from dtat.services.update import guildObj
+from dtat.services.update.update_guildObj import guildObj
 
 
 def updateAll():

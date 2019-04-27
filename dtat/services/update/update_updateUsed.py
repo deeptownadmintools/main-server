@@ -1,6 +1,6 @@
 from dtat.models import Guild
 from datetime import datetime, timedelta
-from dtat.services.update import guildObj
+from dtat.services.update.update_guildObj import guildObj
 
 import time
 def updateUsed():
