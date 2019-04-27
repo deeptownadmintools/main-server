@@ -1,0 +1,3 @@
+SQLALCHEMY_DATABASE_URI = "sqlite:////tmp/dtat_test"
+SQLALCHEMY_TRACK_MODIFICATIONS = False
+TESTING = True
