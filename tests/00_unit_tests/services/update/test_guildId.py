@@ -20,3 +20,7 @@ def test_guildId_ok(mGObj, mQ):
     assert guildId(1) == 'ok'
     mGObj.assert_called_once()
     mGObj.assert_called_with('ok', False, False)
+    mGObj.reset_mock()
+    assert guildId(1,True, True) == 'ok'
+    mGObj.assert_called_once()
+    mGObj.assert_called_with('ok', True, True)
