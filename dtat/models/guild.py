@@ -10,7 +10,7 @@ class Guild(app.db.Model):
     name = Column(String(32))
     timeStamps = app.db.relationship('TimeStamp', backref='guild', lazy=True)
     players = app.db.relationship('Player', backref='guild', lazy=True)
-    rockbiteId = Column(String(32))
+    rockbiteId = Column(String(32), nullable=False, unique=True)
     level = Column(Integer)
     lastVisited = Column(DateTime)
 
