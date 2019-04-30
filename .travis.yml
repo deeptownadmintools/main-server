@@ -5,5 +5,5 @@ python:
 install:
   - pip install flake8
 script:
-  - flake8 evodoc tests --count
+  - flake8 dtat tests --count
   - python setup.py pytest
