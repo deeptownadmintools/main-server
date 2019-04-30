@@ -52,10 +52,8 @@ def test_updateName(mReq, client, app, session):
     assert res.get_json()['message'] == 'Api response was not ok.'
 
 
-
 @mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
 def test_updateName_2(mReq, client, app, session):
-    
     data['status'] = 'nok'
     res = len(client.get('/data/guild/all').get_json()['data'])
     assert res == 0
