@@ -27,8 +27,8 @@ data = {
 
 @mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
 def test_updateName(mReq, client, app):
-    res = len(client.get('/data/guild/all').get_json()['data'])
-    assert res == 0
+    # res = len(client.get('/data/guild/all').get_json()['data'])
+    # assert res == 0
     guildCount = len(Guild.query.all())
 
     mReq.get.return_value.json.return_value = data
