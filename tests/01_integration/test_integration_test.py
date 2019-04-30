@@ -1,2 +1,2 @@
-def test(client):
+def test():
     pass
