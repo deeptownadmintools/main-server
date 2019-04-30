@@ -11,18 +11,18 @@ def test_player_partial(mApp, mRel):
     assert p.guild_id == 1
     assert p.name == 2
     assert p.rockbiteId == 3
-    assert p.lastOnline == None
-    assert p.level == None
-    assert p.depth == None
-    assert p.mine == None
-    assert p.chemMine == None
-    assert p.oil == None
-    assert p.crafters == None
-    assert p.smelters == None
-    assert p.jewel == None
-    assert p.chemStation == None
-    assert p.greenHouse == None
-    assert p.lastEventDonation == None
+    assert p.lastOnline is None
+    assert p.level is None
+    assert p.depth is None
+    assert p.mine is None
+    assert p.chemMine is None
+    assert p.oil is None
+    assert p.crafters is None
+    assert p.smelters is None
+    assert p.jewel is None
+    assert p.chemStation is None
+    assert p.greenHouse is None
+    assert p.lastEventDonation is None
 
     assert p.keys() == [
         'id',

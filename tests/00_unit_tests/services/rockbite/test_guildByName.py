@@ -17,5 +17,5 @@ def test_guildById_ok(mReq, mApp):
 def test_guildById_nok(mReq, mApp):
     mReq.return_value.json.return_value = {'status': 'nok'}
     with pytest.raises(RockbiteException):
-        r = guildByName('1')
+        guildByName('1')
         assert False

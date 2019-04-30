@@ -21,16 +21,16 @@ class MockGuild():
         self.lvl = lvl
 
 
-# @mock.patch('dtat.models.Guild.query')
-@mock.patch('dtat.services.update.update_guildName.guildByName', return_value=data)
+@mock.patch('dtat.services.update.update_guildName.guildByName',
+            return_value=data)
 @mock.patch('dtat.services.update.update_guildName.app')
 @mock.patch('dtat.services.update.update_guildName.app.db.session')
-@mock.patch('dtat.services.update.update_guildName.Guild', side_effect=MockGuild)
-# @mock.patch('dtat.services.update.update_guildName.Guild')
+@mock.patch('dtat.services.update.update_guildName.Guild',
+            side_effect=MockGuild)
 def test_guildName(mGuild, mSession, mApp, mGldByName):
     mGuild.query.filter_by.return_value.first.return_value = None
-    # mGuild.new_callable = MockGuild
     assert guildName('name') == ['name1string11']
 
-    mGuild.query.filter_by.return_value.first.return_value = MockGuild('name','id',1)
+    mGuild.query.filter_by.return_value.first.return_value = MockGuild(
+        'name', 'id', 1)
     assert guildName('name') == ['nameid1']

@@ -19,7 +19,7 @@ class DTAT(Flask):
 
         app.config.from_object(configObject)
         try:
-            if configObject=="dtat.defaultConfig":
+            if configObject == "dtat.defaultConfig":
                 app.config.from_object("dtat.privateConfig")
         except ImportError:
             pass

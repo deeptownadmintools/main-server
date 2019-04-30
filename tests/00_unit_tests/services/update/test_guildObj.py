@@ -100,11 +100,11 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
     mDate.utcnow.return_value = now
 
     g = MockGuild('g', 'idG', 1, [p])
-    assert guildObj(g) == None
+    assert guildObj(g) is None
     assert mDate.utcnow.call_count == 1
 
     mDate.reset_mock()
-    assert guildObj(g, False, False) == None
+    assert guildObj(g, False, False) is None
     assert mDate.utcnow.call_count == 1
 
     mApp.reset_mock()
@@ -129,7 +129,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
 
     mApp.reset_mock()
     mDate.reset_mock()
-    assert guildObj(g, False, True) == None
+    assert guildObj(g, False, True) is None
     args, kwargs = mApp.db.session.add.call_args_list[1]
     assert args[0].id == 'gidG1nameUidU'
     assert mDate.utcnow.call_count == 2
@@ -140,7 +140,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
         .first.return_value = ts
 
     mDate.reset_mock()
-    assert guildObj(g, False, False) == None
+    assert guildObj(g, False, False) is None
     assert mDate.utcnow.call_count == 1
 
     mApp.reset_mock()
@@ -165,7 +165,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
 
     mApp.reset_mock()
     mDate.reset_mock()
-    assert guildObj(g, False, True) == None
+    assert guildObj(g, False, True) is None
     args, kwargs = mApp.db.session.add.call_args_list[1]
     assert args[0].id == 'gidG1nameUidU'
     assert mDate.utcnow.call_count == 2
@@ -176,7 +176,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
         .first.return_value = ts
 
     mDate.reset_mock()
-    assert guildObj(g, False, False) == None
+    assert guildObj(g, False, False) is None
     assert mDate.utcnow.call_count == 1
 
     mApp.reset_mock()
@@ -201,7 +201,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
 
     mApp.reset_mock()
     mDate.reset_mock()
-    assert guildObj(g, False, True) == None
+    assert guildObj(g, False, True) is None
     args, kwargs = mApp.db.session.add.call_args_list[1]
     assert args[0].id == 'gidG1nameUidU'
     assert mDate.utcnow.call_count == 2
@@ -213,7 +213,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
 
     mDate.reset_mock()
     mApp.reset_mock()
-    assert guildObj(g, False, False) == None
+    assert guildObj(g, False, False) is None
     assert mDate.utcnow.call_count == 1
     assert mApp.db.session.add.call_count == 0
 
@@ -237,7 +237,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
 
     mApp.reset_mock()
     mDate.reset_mock()
-    assert guildObj(g, False, True) == None
+    assert guildObj(g, False, True) is None
     assert mDate.utcnow.call_count == 1
     assert mApp.db.session.add.call_count == 0
 
@@ -256,7 +256,7 @@ def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
     mApp.reset_mock()
     mDate.reset_mock()
     res = guildObj(g, True, True)
-    assert res['players'][0].guild_id == None
+    assert res['players'][0].guild_id is None
     assert res['players'][0].id == '111'
     assert mDate.utcnow.call_count == 2
     assert mApp.db.session.add.call_count == 1
