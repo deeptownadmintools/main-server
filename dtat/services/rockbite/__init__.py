@@ -1,5 +1,5 @@
-from dtat.services.rockbite.guildById import guildById
-from dtat.services.rockbite.guildByName import guildByName
+from dtat.services.rockbite.rockbite_guildById import guildById
+from dtat.services.rockbite.rockbite_guildByName import guildByName
 
 
 __all__ = [
