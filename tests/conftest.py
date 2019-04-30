@@ -37,7 +37,7 @@ def client(app, db, request):
 
 @fixture(scope='function')
 def session(app, request):
-    
+
     app.db.reflect()
     app.db.drop_all()
     app.db.create_all()
