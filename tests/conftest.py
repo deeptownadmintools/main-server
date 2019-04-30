@@ -4,8 +4,8 @@ import os
 from pytest import fixture
 
 
-@fixture(scope="function")
-def app():
+@fixture(scope="session")
+def app(request):
     app = DTAT.create_app("dtat.testConfig")
 
     with app.app_context():
@@ -14,8 +14,8 @@ def app():
     return app
 
 
-@fixture(scope="function")
-def db(app):
+@fixture(scope="session")
+def db(app, request):
     with app.app_context():
         upgrade(os.path.dirname(__file__) + '/../migrations')
         app.db.create_all()
@@ -28,8 +28,20 @@ def db(app):
     os.unlink("/tmp/dtat_test")
 
 
-@fixture(scope="function")
-def client(app, db):
+@fixture(scope="session")
+def client(app, db, request):
     client = app.test_client()
 
     return client
+
+
+@fixture(scope='function')
+def session(app, request):
+    
+    app.db.reflect()
+    app.db.drop_all()
+    app.db.create_all()
+
+    yield app.db
+
+    app.db.drop_all()
