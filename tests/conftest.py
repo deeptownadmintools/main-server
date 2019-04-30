@@ -19,7 +19,6 @@ def db(app):
     with app.app_context():
         upgrade(os.path.dirname(__file__) + '/../migrations')
         app.db.create_all()
-        app.db.session.expire_all()
 
     yield app.db
 
