@@ -77,11 +77,9 @@ def test_donationsCurrent(mReqName, mReqId, client, app, session):
     assert res.status_code == 404
     assert res.get_json()['message'] == 'Guild was not found'
 
-
     mReqName.get.return_value.json.return_value = data1
     client.get('/data/update/name/test')
     res = client.get('/data/donations/current/guild/id/1')
-
 
     assert res.get_json()['data'] == [
         [

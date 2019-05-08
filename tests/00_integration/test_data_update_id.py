@@ -1,7 +1,5 @@
 import mock
 from dtat.models.player import Player
-from dtat.models.guild import Guild
-from datetime import datetime, timedelta
 
 
 data1 = {
@@ -83,17 +81,14 @@ def test_updateId(mReqName, mReqId, client, app, session):
     assert res.status_code == 404
     assert len(Player.query.all()) == 0
 
-
     mReqName.get.return_value.json.return_value = data1
     res = client.get('/data/update/name/test')
-
 
     data2['status'] = 'nok'
     mReqId.get.return_value.json.return_value = data2
     res = client.get('/data/update/id/1')
     assert res.status_code == 404
     assert res.get_json()['message'] == 'Api response was not ok.'
-
 
     data2['status'] = 'ok'
     mReqId.get.return_value.json.return_value = data2

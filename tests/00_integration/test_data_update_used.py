@@ -205,11 +205,11 @@ def test_updateUsed(mDate, mReqName, mReqId, client, app, session):
     mDate.strptime.return_value = datetime.utcnow() - timedelta(1)
 
     mReqName.get.return_value.json.return_value = data1
-    res = client.get('/data/update/name/test')
+    client.get('/data/update/name/test')
     assert len(Player.query.all()) == 0
 
     mReqId.get.return_value.json.return_value = data5
-    res = client.get('/data/guild/id/1/data')
+    client.get('/data/guild/id/1/data')
     assert len(Player.query.all()) == 2
 
     for i in Player.query.all():
@@ -217,7 +217,7 @@ def test_updateUsed(mDate, mReqName, mReqId, client, app, session):
 
     mDate.utcnow.return_value = datetime.utcnow()
     mReqId.get.return_value.json.side_effect = [data2, data3, data4]
-    res = client.get('/data/update/used')
+    client.get('/data/update/used')
     assert len(Player.query.all()) == 2
 
     for i in Player.query.all():

@@ -151,18 +151,15 @@ data4 = {
 }
 
 
-
 @mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
 @mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
 def test_updateAll(mReqName, mReqId, client, app, session):
-    mReqId.get.return_value.json.side_effect=[data2, data3, data4]
+    mReqId.get.return_value.json.side_effect = [data2, data3, data4]
     assert len(Player.query.all()) == 0
-
 
     mReqName.get.return_value.json.return_value = data1
-    res = client.get('/data/update/name/test')
+    client.get('/data/update/name/test')
     assert len(Player.query.all()) == 0
 
-
-    res = client.get('/data/update/all')
+    client.get('/data/update/all')
     assert len(Player.query.all()) == 6
