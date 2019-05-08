@@ -10,7 +10,7 @@ class Player(app.db.Model):
     __tablename__ = "player"
     guild_id = Column(Integer, ForeignKey("guild.id"))
     counts = app.db.relationship('Count', backref='player', lazy=True)
-    name = Column(String(32))
+    name = Column(String(32), nullable=False, default='missing')
     rockbiteId = Column(String(24), nullable=False, unique=True)
     lastOnline = Column(DateTime)
     level = Column(Integer, default=0)

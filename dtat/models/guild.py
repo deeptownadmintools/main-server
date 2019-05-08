@@ -7,7 +7,7 @@ class Guild(app.db.Model):
     Database model representing guilds.
     """
     __tablename__ = "guild"
-    name = Column(String(32))
+    name = Column(String(32), nullable=False, default='missing')
     timeStamps = app.db.relationship('TimeStamp', backref='guild', lazy=True)
     players = app.db.relationship('Player', backref='guild', lazy=True)
     rockbiteId = Column(String(32), nullable=False, unique=True)
