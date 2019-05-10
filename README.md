@@ -26,7 +26,7 @@
     ```
     flask run
     ```
-    This server will be running on default Flask port 5000 and it will be accessible only from localhost, which you can change by using `--port=5002` and `--host=0.0.0.0`
+    This server will be running on default Flask port 5000 and it will be accessible only from localhost, which you can change by using `--port=5001` and `--host=0.0.0.0`
 
 ## Contributing
 1) If you want to contribute to the main repository please ensure, that your code is following the PEP8 convention. You can do that with the use of flake8 and autopep8, which you can install using `pip install -r dev-requirements.txt`, after activating your virtual environment.
