@@ -1,4 +1,4 @@
-# Main server 
+# [Main server](https://github.com/deeptownadmintools/main-server) 
 [![Build Status](https://www.travis-ci.org/deeptownadmintools/main-server.svg?branch=master)](https://www.travis-ci.org/deeptownadmintools/main-server)
 
 
