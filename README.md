@@ -17,7 +17,7 @@
     ROCKBITE_TOKEN = "Token you gained from Rockbite"
     ```
     You can also insert any other variables, which will rewrite the values in the defaultConfig.py.    
-1) You will also need setup your database with:
+1) You will also need to setup your database with:
     ```
     flask db upgrade
     ```
