@@ -21,13 +21,13 @@ def upgrade():
     with op.batch_alter_table('guild', schema=None) as batch_op:
         batch_op.alter_column('rockbiteId',
                existing_type=sa.VARCHAR(length=32),
-               nullable=False)
+               nullable=True)
         batch_op.create_unique_constraint(batch_op.f('uq_guild_rockbiteId'), ['rockbiteId'])
 
     with op.batch_alter_table('player', schema=None) as batch_op:
         batch_op.alter_column('rockbiteId',
                existing_type=sa.VARCHAR(length=24),
-               nullable=False)
+               nullable=True)
         batch_op.create_unique_constraint(batch_op.f('uq_player_rockbiteId'), ['rockbiteId'])
 
     # ### end Alembic commands ###
