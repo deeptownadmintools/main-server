@@ -11,7 +11,7 @@ def playerDonationMatch(timestamp):
                 'received',
             ],
             'data': [...]
-        }
+            }
     """
     list = []
     for count in timestamp.counts:

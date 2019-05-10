@@ -14,7 +14,7 @@ def playerDonDiffMatch(timestamp1, timestamp2):
             'received',
         ],
         'data': [...]
-    }
+        }
     """
     list = []
     if (timestamp1.date > timestamp2.date):
