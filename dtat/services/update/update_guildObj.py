@@ -14,7 +14,7 @@ def guildObj(guild, respond=False, update=False):
             'players': [...],
             'guild': obj,
             'timeStamp': obj
-        }
+            }
     """
     lastTimeStamp = TimeStamp.query.filter_by(
         guild_id=guild.id).order_by(TimeStamp.id.desc()).first()

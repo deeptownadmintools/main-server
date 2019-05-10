@@ -12,8 +12,9 @@ def guildId(id, respond=False, update=False):
             'players': [...],
             'guild': obj,
             'timeStamp': obj
-        }
-        :raises DBException: DBException is raised, when guild with specified id was not found. # noqa: E501
+            }
+        :raises DBException: DBException is raised, when guild with specified
+            id was not found.
     """
     guild = Guild.query.get(id)
     if guild is None:
