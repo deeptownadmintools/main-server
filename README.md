@@ -3,7 +3,7 @@
 
 
 ## Running the server
-1) To run this application you will need an API key for Rockbite's API. You can get one by contacting one of Rockbite's representatives on [Discord](https://discord.gg/jm6vJqG), or [Reddit](https://www.reddit.com/r/deeptown/).
+1) To run this application, you will need an API key for Rockbite's API. You can get one by contacting one of Rockbite's representatives on [Discord](https://discord.gg/jm6vJqG), or [Reddit](https://www.reddit.com/r/deeptown/).
 1) Create a [virtual environment](https://docs.python.org/3/library/venv.html) with Python>=3.7 (older versions might work as well, but it was not tested)
 1) Add these lines at the end of the activation script:
     ```
