@@ -1,5 +1,4 @@
 import mock
-from dtat.models.player import Player
 
 
 data1 = {
@@ -21,8 +20,13 @@ data1 = {
             "level": 0
         },
     ],
-    "message": 'placeholder',
     "server_time": "2019-04-28T16:49:29.538Z"
+}
+
+
+nok = {
+    "status": "nok",
+    "message": "Invalid guild id",
 }
 
 
@@ -38,8 +42,8 @@ data2 = {
         "members": [
             {
                 "user_id": "100333100473279671201",
-                "user_name": "ChestnutSprite9338",
-                "donations": 0,
+                "user_name": "a",
+                "donations": 30,
                 "last_online": "2019-04-17T22:51:08.064Z",
                 "level": 69,
                 "depth": 208,
@@ -52,9 +56,9 @@ data2 = {
             },
             {
                 "user_id": "100438959092138638847",
-                "user_name": "raphaelbüchinger12",
-                "donations": 236,
-                "received_donation": 13,
+                "user_name": "b",
+                "donations": 20,
+                "received_donation": 10,
                 "last_event_donation": 0,
                 "last_online": "2019-04-30T15:46:20.064Z",
                 "level": 139,
@@ -67,34 +71,51 @@ data2 = {
                 "chemistry_building_slot_count": 2
             },
         ]
-    },
-    "message": 'placeholder'
+    }
 }
 
 
 @mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
 @mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
-def test_updateId(mReqName, mReqId, client, app, session):
-    assert len(Player.query.all()) == 0
-
-    mReqId.get.return_value.json.return_value = data2
-    res = client.get('/data/update/id/1')
-    assert res.get_json()['message'] == 'Guild was not found'
-    assert res.status_code == 404
-    assert len(Player.query.all()) == 0
-
+def test_guildData(mReqName, mReqId, client, app, session):
     mReqName.get.return_value.json.return_value = data1
-    res = client.get('/data/update/name/test')
+    mReqId.get.return_value.json.return_value = nok
 
-    data2['status'] = 'nok'
+    client.get('/data/update/name/test')
+
+    res = client.get('/data/guild/id/3/data')
+    assert res.status_code == 410
+    assert res.get_json()['message'] == 'Guild has been deleted.'
+
     mReqId.get.return_value.json.return_value = data2
-    res = client.get('/data/update/id/1')
+    res = client.get('/data/guild/id/3/data')
     assert res.status_code == 404
-    assert res.get_json()['message'] == 'Api response was not ok.'
+    assert res.get_json()['message'] == 'Guild was not found.'
 
-    data2['status'] = 'ok'
-    mReqId.get.return_value.json.return_value = data2
-    res = client.get('/data/update/id/1')
-    assert res.get_json()['result'] == 'ok'
+    res = client.get('/data/guild/id/1/data')
     assert res.status_code == 200
-    assert len(Player.query.all()) == 2
+    assert res.get_json()['id'] == 1
+    assert res.get_json()['name'] == "Zion England"
+    assert res.get_json()['level'] == 16
+    assert res.get_json()['players']['keys'] == [
+        'id',
+        'name',
+        'lastOnline',
+        'level',
+        'depth',
+        'mine',
+        'chemMine',
+        'oil',
+        'crafters',
+        'smelters',
+        'jewel',
+        'chemStation',
+        'greenHouse',
+        'lastEventDonation',
+    ]
+    assert res.get_json()['players']['data'] == [
+        [1, 'a', 'Wed, 17 Apr 2019 22:51:08 GMT',
+            69, 208, 13, 4, 0, 2, 2, 0, 1, 1, 0],
+        [2, 'b', 'Tue, 30 Apr 2019 15:46:20 GMT',
+            139, 387, 19, 5, 0, 2, 2, 0, 2, 1, 0],
+    ]

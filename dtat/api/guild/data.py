@@ -15,10 +15,14 @@ def data(id):
     """
     guild = guildWithId(id)
     if len(guild.players) == 0:
-        guild = guildObj(guild, True, True)['guild']
-        if len(guild.players) == 0:
-            removeGuild(guild)
-            raise DTATException(410, "Guild has been deleted.", ["guild"])
+        try:
+            guild = guildObj(guild, True, True)['guild']
+        except DTATException as e:
+            if e.invalid == ["Invalid guild id"]:
+                removeGuild(guild)
+                raise DTATException(410, "Guild has been deleted.", ["guild"])
+            else:
+                raise DTATException(e.errorCode, e.message, e.invalid)
 
     data = []
     for a in guild.players:

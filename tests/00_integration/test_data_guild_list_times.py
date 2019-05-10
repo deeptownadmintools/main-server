@@ -1,5 +1,5 @@
 import mock
-from dtat.models.player import Player
+from datetime import datetime
 
 
 data1 = {
@@ -21,7 +21,6 @@ data1 = {
             "level": 0
         },
     ],
-    "message": 'placeholder',
     "server_time": "2019-04-28T16:49:29.538Z"
 }
 
@@ -30,7 +29,7 @@ data2 = {
     "status": "ok",
     "result": {
         "guild_id": "1",
-        "guild_name": "Zion England",
+        "guild_name": "Testtttttt",
         "guild_level": 16,
         "total_donations": 6284013.165,
         "total_level": 10453,
@@ -38,8 +37,8 @@ data2 = {
         "members": [
             {
                 "user_id": "100333100473279671201",
-                "user_name": "ChestnutSprite9338",
-                "donations": 0,
+                "user_name": "a",
+                "donations": 30,
                 "last_online": "2019-04-17T22:51:08.064Z",
                 "level": 69,
                 "depth": 208,
@@ -52,9 +51,9 @@ data2 = {
             },
             {
                 "user_id": "100438959092138638847",
-                "user_name": "raphaelbüchinger12",
-                "donations": 236,
-                "received_donation": 13,
+                "user_name": "b",
+                "donations": 20,
+                "received_donation": 10,
                 "last_event_donation": 0,
                 "last_online": "2019-04-30T15:46:20.064Z",
                 "level": 139,
@@ -67,34 +66,46 @@ data2 = {
                 "chemistry_building_slot_count": 2
             },
         ]
-    },
-    "message": 'placeholder'
+    }
 }
 
 
 @mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
 @mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
-def test_updateId(mReqName, mReqId, client, app, session):
-    assert len(Player.query.all()) == 0
-
-    mReqId.get.return_value.json.return_value = data2
-    res = client.get('/data/update/id/1')
-    assert res.get_json()['message'] == 'Guild was not found'
-    assert res.status_code == 404
-    assert len(Player.query.all()) == 0
-
+@mock.patch('dtat.services.update.update_guildObj.datetime')
+def test_guildListTimes(mDate, mReqName, mReqId, client, app, session):
     mReqName.get.return_value.json.return_value = data1
-    res = client.get('/data/update/name/test')
-
-    data2['status'] = 'nok'
     mReqId.get.return_value.json.return_value = data2
-    res = client.get('/data/update/id/1')
+
+    mDate.utcnow.return_value = datetime(2019, 5, 10, 1, 1, 1, 1)
+    mDate.strptime.return_value = datetime(2019, 5, 10, 1, 1, 1, 1)
+
+    res = client.get('/data/guild/id/1/times')
     assert res.status_code == 404
-    assert res.get_json()['message'] == 'Api response was not ok.'
+    assert res.get_json()['message'] == 'Guild was not found.'
 
-    data2['status'] = 'ok'
-    mReqId.get.return_value.json.return_value = data2
-    res = client.get('/data/update/id/1')
-    assert res.get_json()['result'] == 'ok'
+    client.get('/data/update/name/test')
+
+    res = client.get('/data/guild/id/1/times')
     assert res.status_code == 200
-    assert len(Player.query.all()) == 2
+    assert res.get_json()['id'] == 1
+    assert res.get_json()['name'] == "Testtttttt"
+    assert res.get_json()['times']['keys'] == [
+        'id',
+        'date',
+    ]
+    assert res.get_json()['times']['data'] == []
+
+    client.get('/data/update/id/1')
+
+    res = client.get('/data/guild/id/1/times')
+    assert res.status_code == 200
+    assert res.get_json()['id'] == 1
+    assert res.get_json()['name'] == "Testtttttt"
+    assert res.get_json()['times']['keys'] == [
+        'id',
+        'date',
+    ]
+    assert res.get_json()['times']['data'][0][0] == 1
+    assert res.get_json()[
+        'times']['data'][0][1] == 'Fri, 10 May 2019 01:01:01 GMT'

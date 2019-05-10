@@ -21,6 +21,7 @@ data = {
             "level": 0
         },
     ],
+    "message": 'placeholder',
     "server_time": "2019-04-28T16:49:29.538Z"
 }
 

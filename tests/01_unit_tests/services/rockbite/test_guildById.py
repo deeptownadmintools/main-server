@@ -15,7 +15,8 @@ def test_guildById_ok(mReq, mApp):
 @mock.patch('dtat.app')
 @mock.patch('requests.get')
 def test_guildById_nok(mReq, mApp):
-    mReq.return_value.json.return_value = {'status': 'nok'}
+    mReq.return_value.json.return_value = {
+        'status': 'nok', 'message': 'placeholder'}
     with pytest.raises(RockbiteException):
         guildById('1')
         assert False
