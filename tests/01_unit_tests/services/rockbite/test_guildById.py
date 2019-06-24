@@ -1,6 +1,6 @@
 import mock
 import pytest
-from dtat.services.rockbite.rockbite_guildById import guildById
+from dtat.services.rockbite.rockbiteGuildById import guildById
 from dtat.exceptions.rockbiteException import RockbiteException
 
 

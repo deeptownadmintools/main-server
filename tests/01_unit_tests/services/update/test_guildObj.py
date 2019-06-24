@@ -1,6 +1,6 @@
 import mock
 from datetime import datetime, timedelta
-from dtat.services.update.update_guildObj import guildObj
+from dtat.services.update import guildObj
 
 
 data = {
@@ -76,16 +76,16 @@ class MockPlayer():
         self.lastEventDonation = lastEvDon
 
 
-@mock.patch('dtat.services.update.update_guildObj.datetime',
+@mock.patch('dtat.services.update.datetime',
             return_value=datetime.utcnow())
-@mock.patch('dtat.services.update.update_guildObj.app')
-@mock.patch('dtat.services.update.update_guildObj.Player',
+@mock.patch('dtat.services.update.app')
+@mock.patch('dtat.services.update.Player',
             side_effect=MockPlayer)
-@mock.patch('dtat.services.update.update_guildObj.Count',
+@mock.patch('dtat.services.update.Count',
             side_effect=MockCount)
-@mock.patch('dtat.services.update.update_guildObj.TimeStamp',
+@mock.patch('dtat.services.update.TimeStamp',
             side_effect=MockTimeStamp)
-@mock.patch('dtat.services.update.update_guildObj.guildById',
+@mock.patch('dtat.services.update.guildById',
             return_value=data)
 def test_guildObj(mGldById, mTS, mC, mP, mApp, mDate):
     mTS.query.filter_by.return_value\

@@ -70,9 +70,9 @@ data2 = {
 }
 
 
-@mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
-@mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
-@mock.patch('dtat.services.update.update_guildObj.datetime')
+@mock.patch('dtat.services.rockbite.rockbiteGuildById.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildByName.requests')
+@mock.patch('dtat.services.update.datetime')
 def test_guildListTimes(mDate, mReqName, mReqId, client, app, session):
     mReqName.get.return_value.json.return_value = data1
     mReqId.get.return_value.json.return_value = data2

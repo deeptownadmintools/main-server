@@ -69,8 +69,8 @@ data2 = {
 }
 
 
-@mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
-@mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildById.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildByName.requests')
 def test_donationsCurrent(mReqName, mReqId, client, app, session):
     mReqId.get.return_value.json.return_value = data2
     res = client.get('/data/donations/current/guild/id/1')

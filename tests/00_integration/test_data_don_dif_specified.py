@@ -162,9 +162,9 @@ data4 = {
 }
 
 
-@mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
-@mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
-@mock.patch('dtat.services.update.update_guildObj.datetime')
+@mock.patch('dtat.services.rockbite.rockbiteGuildById.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildByName.requests')
+@mock.patch('dtat.services.update.datetime')
 def test_donationsDifSpecified(mDate, mReqName, mReqId, client, app, session):
     mDate.utcnow.return_value = datetime.utcnow() - timedelta(1)
     mDate.strptime.return_value = datetime.utcnow() - timedelta(1)
