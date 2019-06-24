@@ -72,8 +72,8 @@ data2 = {
 }
 
 
-@mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
-@mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildById.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildByName.requests')
 def test_updateId(mReqName, mReqId, client, app, session):
     assert len(Player.query.all()) == 0
 

@@ -198,9 +198,9 @@ data5 = {
 }
 
 
-@mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
-@mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
-@mock.patch('dtat.services.update.update_guildObj.datetime')
+@mock.patch('dtat.services.rockbite.rockbiteGuildById.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildByName.requests')
+@mock.patch('dtat.services.update.datetime')
 def test_updateUsed(mDate, mReqName, mReqId, client, app, session):
     mReqId.get.return_value.json.return_value = data5
     assert len(Player.query.all()) == 0

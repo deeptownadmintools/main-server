@@ -1,5 +1,5 @@
 import mock
-from dtat.services.update.update_guildName import guildName
+from dtat.services.update import guildName
 
 
 data = {
@@ -21,11 +21,11 @@ class MockGuild():
         self.lvl = lvl
 
 
-@mock.patch('dtat.services.update.update_guildName.guildByName',
+@mock.patch('dtat.services.update.guildByName',
             return_value=data)
-@mock.patch('dtat.services.update.update_guildName.app')
-@mock.patch('dtat.services.update.update_guildName.app.db.session')
-@mock.patch('dtat.services.update.update_guildName.Guild',
+@mock.patch('dtat.services.update.app')
+@mock.patch('dtat.services.update.app.db.session')
+@mock.patch('dtat.services.update.Guild',
             side_effect=MockGuild)
 def test_guildName(mGuild, mSession, mApp, mGldByName):
     mGuild.query.filter_by.return_value.first.return_value = None

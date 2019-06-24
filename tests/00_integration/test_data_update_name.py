@@ -26,7 +26,7 @@ data = {
 }
 
 
-@mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildByName.requests')
 def test_updateName(mReq, client, app, session):
     assert len(Guild.query.all()) == 0
 

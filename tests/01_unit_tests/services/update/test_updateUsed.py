@@ -1,11 +1,11 @@
 import mock
 from datetime import datetime
-from dtat.services.update.update_updateUsed import updateUsed
+from dtat.services.update import updateUsed
 
 
-@mock.patch('dtat.services.update.update_updateUsed.datetime')
-@mock.patch('dtat.services.update.update_updateUsed.guildObj')
-@mock.patch('dtat.services.update.update_updateUsed.Guild')
+@mock.patch('dtat.services.update.datetime')
+@mock.patch('dtat.services.update.guildObj')
+@mock.patch('dtat.services.update.Guild')
 def test_updateAll(mGld, mGldObj, mDate):
     now = datetime.utcnow()
     mGld.lastVisited = now

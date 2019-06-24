@@ -1,5 +1,6 @@
-from dtat.services.rockbite import guildById
-from dtat.models import Player, Count, TimeStamp
+from dtat.models import Guild, Player, Count, TimeStamp
+from dtat.exceptions import DbException
+from dtat.services.rockbite import guildByName, guildById
 from dtat import app
 from datetime import datetime, timedelta
 
@@ -127,3 +128,63 @@ def guildObj(guild, respond=False, update=False):
             'guild': guild,
             'timeStamp': timeStamp
         }
+
+
+def guildId(id, respond=False, update=False):
+    """
+    Updates guild data in database
+        :param id: database id of a guild
+        :param respond: nothing will be returned if False
+        :returns: {
+            'players': [...],
+            'guild': obj,
+            'timeStamp': obj
+            }
+        :raises DBException: DBException is raised, when guild with specified
+            id was not found.
+    """
+    guild = Guild.query.get(id)
+    if guild is None:
+        raise DbException(404, "Guild was not found", ["id"])
+    return guildObj(guild, respond, update)
+
+
+def guildName(guildName):
+    """
+    Updates list of guilds
+        :param guildName: (partial) guild name
+        :returns: list of added guild's ids
+    """
+    data = guildByName(guildName)['result']
+    ids = []
+    for a in data:
+        guild = Guild.query.filter_by(rockbiteId=a['guild_id']).first()
+        if guild is None:
+            guild = Guild(a['guild_name'], a['guild_id'], a['level'])
+            app.db.session.add(guild)
+            app.db.session.commit()
+        else:
+            guild.name = a['guild_name']
+            guild.level = a['level']
+            app.db.session.commit()
+        ids.append(guild.id)
+    return ids
+
+
+def updateAll():
+    """
+    Updates every guild's data in database
+    """
+    guilds = Guild.query.all()
+    for a in guilds:
+        guildObj(a)
+
+
+def updateUsed():
+    """
+    Updates every used guild's data in database
+    """
+    guilds = Guild.query.filter(
+        Guild.lastVisited >= datetime.utcnow() - timedelta(365/12)).all()
+    for a in guilds:
+        guildObj(a)

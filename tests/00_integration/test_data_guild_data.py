@@ -75,8 +75,8 @@ data2 = {
 }
 
 
-@mock.patch('dtat.services.rockbite.rockbite_guildById.requests')
-@mock.patch('dtat.services.rockbite.rockbite_guildByName.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildById.requests')
+@mock.patch('dtat.services.rockbite.rockbiteGuildByName.requests')
 def test_guildData(mReqName, mReqId, client, app, session):
     mReqName.get.return_value.json.return_value = data1
     mReqId.get.return_value.json.return_value = nok
