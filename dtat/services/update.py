@@ -1,5 +1,5 @@
 from dtat.models import Guild, Player, Count, TimeStamp
-from dtat.exceptions import DbException
+from dtat.exceptions import DbException, RockbiteException
 from dtat.services.rockbite import guildByName, guildById
 from dtat import app
 from datetime import datetime, timedelta
@@ -187,4 +187,8 @@ def updateUsed():
     guilds = Guild.query.filter(
         Guild.lastVisited >= datetime.utcnow() - timedelta(30)).all()
     for a in guilds:
-        guildObj(a)
+        print(a.name, a.id)
+        try:
+            guildObj(a)
+        except RockbiteException as e:
+            print(datetime.utcnow(), " - ", a.name, a.id, " - ", e.message)
