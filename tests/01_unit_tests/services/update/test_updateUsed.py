@@ -11,7 +11,13 @@ def test_updateAll(mGld, mGldObj, mDate):
     mGld.lastVisited = now
     mDate.utcnow.return_value = now
     mGld.query.filter.return_value\
-        .all.return_value = [0, 1, 2, 3, 4, 5]
+        .all.return_value = [
+            mock.MagicMock(),
+            mock.MagicMock(),
+            mock.MagicMock(),
+            mock.MagicMock(),
+            mock.MagicMock(),
+            mock.MagicMock()]
     updateUsed()
     assert mGldObj.call_count == 6
 
