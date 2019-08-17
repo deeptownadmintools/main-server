@@ -7,4 +7,4 @@ def listGuildsWithName(name):
     (non case sensitive)
     :param name: start of guild name (non case sensitive)
     """
-    return Guild.query.filter(Guild.name.like(name + '%')).all()
+    return Guild.query.filter(Guild.name.like('%' + name + '%')).all()
